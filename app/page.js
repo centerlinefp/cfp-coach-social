@@ -623,7 +623,7 @@ Write ONLY the caption text, nothing else. No labels or meta-commentary.`;
                         );
                       })}
                       <select value={composerData.theme} onChange={(e) => setComposerData({ ...composerData, theme: e.target.value })} style={selectStyle}>
-                        {THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                        {THEMES.map((t) => <option key={t} value={t} style={{ background: "#1a1a1a", color: "#fff" }}>{t}</option>)}
                       </select>
                     </div>
                     <input
@@ -681,7 +681,7 @@ Write ONLY the caption text, nothing else. No labels or meta-commentary.`;
             </div>
             <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap", alignItems: "center" }}>
               <select value={ideaTheme} onChange={(e) => setIdeaTheme(e.target.value)} style={selectStyle}>
-                {THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                {THEMES.map((t) => <option key={t} value={t} style={{ background: "#1a1a1a", color: "#fff" }}>{t}</option>)}
               </select>
               <button onClick={generateIdeas} disabled={generating === "ideas"} style={{
                 ...btnPrimary,
@@ -784,7 +784,7 @@ Write ONLY the caption text, nothing else. No labels or meta-commentary.`;
             </div>
             <div style={{ marginBottom: 12 }}>
               <select value={captionTheme} onChange={(e) => setCaptionTheme(e.target.value)} style={selectStyle}>
-                {THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                {THEMES.map((t) => <option key={t} value={t} style={{ background: "#1a1a1a", color: "#fff" }}>{t}</option>)}
               </select>
             </div>
             <textarea
