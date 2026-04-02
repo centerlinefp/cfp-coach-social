@@ -396,6 +396,7 @@ Write ONLY the caption text, nothing else. No labels or meta-commentary.`;
     fontFamily: "inherit",
     background: "rgba(255,255,255,0.06)",
     color: "rgba(255,255,255,0.8)",
+    colorScheme: "dark",
     outline: "none",
   };
 
