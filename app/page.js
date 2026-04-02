@@ -19,15 +19,35 @@ Content themes to focus on:
 Target platforms: Instagram, Facebook, TikTok
 Posting cadence: 3-4 times per week
 
-CRITICAL WRITING STYLE RULES (follow these exactly):
-- Write like a real person. Like a gym coach in Mobile, AL who posts on social media, not a copywriter or marketing agency.
-- Use commas and periods to create pauses in thought. NEVER use em dashes (—) or double hyphens (--). Not once.
-- NEVER use the contrast structure (e.g., "Not just X, but Y" or "It's not about X, it's about Y"). This is an AI writing pattern. Avoid it completely.
-- NEVER use these overused AI phrases: "here's the thing," "let's be honest," "show up," "level up," "game changer," "built different," "hits different," "just saying," "that's a wrap."
-- Keep it casual and slightly imperfect. Short sentences are fine. Fragments are fine. Don't be too polished.
-- Sound like someone who is genuinely excited about what happened at the gym today, not someone crafting a brand message.
+CRITICAL WRITING STYLE RULES (follow every single one):
+
+PUNCTUATION:
+- Use commas and periods to create pauses. NEVER use em dashes (—) or double hyphens (--). Not once.
+- One exclamation point max per caption. Usually zero.
+
+BANNED PATTERNS (using ANY of these is a failure):
+- NEVER use contrast framing: "The people who X... the people who don't Y," "Not just X, but Y," "It's not about X, it's about Y," "This isn't X, this is Y." No version of this structure. Ever.
+- NEVER use dramatic reveals: "Then boom," "And then it hits you," "That's when you realize," "That's the difference."
+- NEVER personify body parts for drama: "Your legs are questioning life choices," "Your shoulders are screaming," "Your lungs are begging." Just say it was hard.
+- NEVER use performative storytelling: "Sounds simple until...," "Nobody talks about...," "Here's what people don't realize..."
+- NEVER use these phrases: "hits different," "built different," "let's be honest," "here's the thing," "the truth is," "if you know you know," "let that sink in," "game changer," "level up," "show up," "just saying," "that's a wrap," "where the magic happens," "trust the process," "embrace the grind," "earn it every day."
+
+VOICE:
+- You are a coach who just finished a session and grabbed your phone. You're telling a friend what happened today.
+- Talk TO people like a person, not AT them like a brand. No dramatic buildup. No clever turns. No punchlines.
+- Use "I" and "we." Say what happened. Say why it was hard or cool or worth showing up for. That's it.
+- Keep it flat and real. If something was tough, just say it was tough. Don't dramatize it.
+- Short sentences. Fragments are fine. A little messy is good. Don't be polished.
+- Don't start with "So" or "Look."
 - Do not use "y'all."
-- Avoid exclamation points on more than one sentence per caption.`;
+- End with a simple, low-pressure CTA. "DM us if you want to come train" not "Ready to find out what you're made of?"
+
+EXAMPLE OF WHAT WE WANT:
+"We ran wall balls into running today. Six rounds. By the third round your shoulders are done from the sled pushes and you still have to get that ball above the line. That's the part of HYROX nobody warns you about, doing stations back to back when you're already tired. Proud of the crew today. They put in the work. DM us if you want to come train."
+
+EXAMPLE OF WHAT WE DO NOT WANT:
+"That sound hits different. Twenty wall balls, then straight to running. Sounds simple until you're 6 rounds deep. Your legs are questioning every life choice. This is where the magic happens. The people who trained keep moving. The people who didn't... well, they learn a lesson about preparation."`;
+
 
 const PLATFORMS = ["Instagram", "Facebook", "TikTok"];
 const THEMES = ["HYROX Training & Events", "Community / Member Spotlights", "Elevate (Group Weightlifting)", "Personal Training"];
@@ -158,7 +178,7 @@ function PostCard({ post, onDelete, onEdit }) {
   );
 }
 
-function CaptionCard({ platform, caption, onAddToCalendar, btnSecondary, btnPrimary }) {
+function CaptionCard({ platform, caption, btnSecondary }) {
   const [copied, setCopied] = useState(false);
   const platformColors = { Instagram: "#E1306C", Facebook: "#1877F2", TikTok: "#00F2EA" };
   const c = platformColors[platform];
@@ -175,28 +195,19 @@ function CaptionCard({ platform, caption, onAddToCalendar, btnSecondary, btnPrim
           padding: "4px 10px", borderRadius: 4,
           background: `${c}22`, color: c, border: `1px solid ${c}44`,
         }}>{platform}</span>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(caption);
-              setCopied(true);
-              setTimeout(() => setCopied(false), 2000);
-            }}
-            style={{
-              ...btnSecondary, padding: "6px 14px", fontSize: 11,
-              background: copied ? "rgba(208,255,0,0.15)" : "rgba(255,255,255,0.05)",
-              color: copied ? "#D0FF00" : "rgba(255,255,255,0.7)",
-              borderColor: copied ? "rgba(208,255,0,0.3)" : "rgba(255,255,255,0.15)",
-            }}
-          >{copied ? "Copied!" : "Copy"}</button>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(caption);
-              onAddToCalendar();
-            }}
-            style={{ ...btnPrimary, padding: "6px 14px", fontSize: 11 }}
-          >Add to Calendar</button>
-        </div>
+        <button
+          onClick={() => {
+            navigator.clipboard.writeText(caption);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          }}
+          style={{
+            ...btnSecondary, padding: "6px 14px", fontSize: 11,
+            background: copied ? "rgba(208,255,0,0.15)" : "rgba(255,255,255,0.05)",
+            color: copied ? "#D0FF00" : "rgba(255,255,255,0.7)",
+            borderColor: copied ? "rgba(208,255,0,0.3)" : "rgba(255,255,255,0.15)",
+          }}
+        >{copied ? "Copied!" : "Copy"}</button>
       </div>
       <div style={{
         fontSize: 13.5, color: "rgba(255,255,255,0.8)", lineHeight: 1.7,
@@ -316,7 +327,7 @@ Post concept: ${captionIdea || "General post about " + captionTheme}
 Platform-specific guidelines:
 - ${platformGuides[platform]}
 
-STYLE REMINDER: Write like a real gym coach, not a copywriter. Use commas and periods for pauses, never em dashes. No contrast structures like "not just X, but Y." Keep it natural and slightly imperfect. One exclamation point max.
+STYLE REMINDER: You just finished a session and grabbed your phone. Say what happened, say why it was hard or cool, and move on. No drama, no clever turns, no contrast framing, no personifying body parts, no punchlines. Commas and periods only, never em dashes. Flat and real. Low-pressure CTA at the end.
 
 Write ONLY the caption text, nothing else. No labels or meta-commentary.`;
           try {
@@ -791,26 +802,39 @@ Write ONLY the caption text, nothing else. No labels or meta-commentary.`;
             </button>
 
             {Object.keys(captionResults).length > 0 && (
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                {PLATFORMS.filter(p => captionResults[p]).map((platform) => (
-                  <CaptionCard
-                    key={platform}
-                    platform={platform}
-                    caption={captionResults[platform]}
-                    btnSecondary={btnSecondary}
-                    btnPrimary={btnPrimary}
-                    onAddToCalendar={() => {
-                      setView("calendar");
-                      setComposerData({
+              <div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  {PLATFORMS.filter(p => captionResults[p]).map((platform) => (
+                    <CaptionCard
+                      key={platform}
+                      platform={platform}
+                      caption={captionResults[platform]}
+                      btnSecondary={btnSecondary}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => {
+                    const platforms = PLATFORMS.filter(p => captionResults[p]);
+                    const targetDay = selectedDay || weekDates.find(d => d.isToday) || weekDates[0];
+                    if (!selectedDay) setSelectedDay(targetDay);
+                    const updated = { ...posts };
+                    if (!updated[targetDay.key]) updated[targetDay.key] = [];
+                    platforms.forEach((platform) => {
+                      updated[targetDay.key] = [...updated[targetDay.key], {
                         platforms: [platform],
+                        platform: platform,
                         theme: captionTheme,
                         idea: captionIdea,
                         caption: captionResults[platform],
-                      });
-                      setShowComposer(true);
-                    }}
-                  />
-                ))}
+                        id: Date.now() + Math.random(),
+                      }];
+                    });
+                    saveAndUpdate(updated);
+                    setView("calendar");
+                  }}
+                  style={{ ...btnPrimary, marginTop: 16, width: "100%" }}
+                >Add All to Calendar</button>
               </div>
             )}
 
